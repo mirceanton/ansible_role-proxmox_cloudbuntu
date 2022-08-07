@@ -6,7 +6,7 @@ galaxy_info:
   company: mirceanton
 
   issue_tracker_url: https://github.com/Amir-Homelab/ansible-role_proxmox-cloud-vm-template/issues
-  license: MIT
+  license: license (MIT)
 
   min_ansible_version: 2.1
 
