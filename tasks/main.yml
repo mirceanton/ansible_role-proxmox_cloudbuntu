@@ -1,2 +1,10 @@
 ---
-# tasks file for .
+- import_tasks: download-image.yml
+
+- import_tasks: create-vm.yml
+
+- block:
+    - import_tasks: configure-vm.yml
+  rescue:
+    - import_tasks: destroy-vm.yml
+  when: __vm_create__.changed
