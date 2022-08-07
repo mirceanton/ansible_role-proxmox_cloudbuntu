@@ -47,5 +47,23 @@
   shell: "qm set {{ vm_vmid }} --cipassword {{ vm_cloudinit_password }}"
   when: vm_cloudinit_password is defined
 
+- name: Set the cloudinit ssh keys
+  when: vm_cloudinit_ssh_keys is defined
+  block:
+    - name: Create ssh keys file
+      lineinfile:
+        path: "/tmp/{{ vm_vmid }}-ssh-keys"
+        line: "{{ item }}"
+        create: true
+      loop: "{{ vm_cloudinit_ssh_keys }}"
+
+    - name: Set the VM ssh keys
+      shell: "qm set {{ vm_vmid }} --sshkeys /tmp/{{ vm_vmid }}-ssh-keys"
+
+    - name: Remove the ssh keys file
+      file:
+        path: "/tmp/{{ vm_vmid }}-ssh-keys"
+        state: absent
+
 - name: Convert the VM to a template
   shell: "qm template {{ vm_vmid }}"
