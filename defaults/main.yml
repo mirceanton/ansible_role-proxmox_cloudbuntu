@@ -1,2 +1,17 @@
 ---
-# defaults file for .
+cloud_image_url: https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64.img
+cloud_image_dest: /var/lib/vz/template/iso/ubuntu-server-jammy-cloud.img
+
+vm_ostype: l26
+
+vm_cpu: host
+vm_cores: 1
+vm_ram: 1024
+
+vm_net_driver: virtio
+vm_net_bridge: vmbr0
+
+vm_net_ip: dhcp
+vm_scsihw: virtio-scsi-pci
+vm_disksize: 4G
+vm_bios: seabios
