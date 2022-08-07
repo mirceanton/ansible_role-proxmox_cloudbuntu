@@ -63,11 +63,28 @@ N/A
 Example Playbook
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+``` yaml
+---
+- hosts: pve
+  remote_user: root
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+  roles:
+    - role: proxmox-cloud-vm-template
+      vars:
+        vm_vmid: 9000
+        vm_name: ubuntu-22.04-cloud
+        vm_storage: local-vm
+
+        vm_nameserver: 192.168.35.1
+        vm_searchdomain: local
+        vm_net_ip: "ip=192.168.35.47/24,gw=192.168.35.1"
+
+        vm_cloudinit_user: srvadmin
+        vm_cloudinit_password: test123
+        vm_cloudinit_ssh_keys:
+          - <ssh-key-here>
+          - <ssh-key-here>
+```
 
 License
 -------
