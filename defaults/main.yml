@@ -3,6 +3,7 @@ cloud_image_url: https://cloud-images.ubuntu.com/jammy/current/jammy-server-clou
 cloud_image_dest: /var/lib/vz/template/iso/ubuntu-server-jammy-cloud.img
 
 vm_ostype: l26
+vm_machine: pc
 
 vm_cpu: host
 vm_cores: 1
