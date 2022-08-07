@@ -1,0 +1,5 @@
+---
+- name: Download image file
+  get_url:
+    url: "{{ cloud_image_url }}"
+    dest: "{{ cloud_image_dest }}"
