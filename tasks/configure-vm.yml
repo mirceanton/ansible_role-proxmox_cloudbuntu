@@ -17,6 +17,14 @@
 - name: Configure the network interface
   shell: "qm set {{ vm_vmid }} --ipconfig0 ip={{ vm_net_ip }}"
 
+- name: Set the nameserver
+  shell: "qm set {{ vm_vmid }} --nameserver {{ vm_nameserver }}"
+  when: vm_nameserver is defined
+
+- name: Set the search domain
+  shell: "qm set {{ vm_vmid }} --searchdomain  {{ vm_searchdomain  }}"
+  when: vm_searchdomain is defined
+
 - name: Create the boot disk
   shell: "qm importdisk {{ vm_vmid }} {{ cloud_image_dest }} {{ vm_storage }}"
 
