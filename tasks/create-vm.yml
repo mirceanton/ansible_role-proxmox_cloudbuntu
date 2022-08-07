@@ -1,0 +1,6 @@
+---
+- name: Create a new VM
+  shell: qm create {{ vm_vmid }} --name {{ vm_name }}
+  args:
+    creates: "/etc/pve/qemu-server/{{ vm_vmid }}.conf"
+  register: __vm_create__

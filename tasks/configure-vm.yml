@@ -1,0 +1,83 @@
+---
+- name: Set OS Type to Linux
+  shell: "qm set {{ vm_vmid }} --ostype {{ vm_ostype }}"
+
+- name: Allocate CPU
+  shell: "qm set {{ vm_vmid }} --cores {{ vm_cores }} --cpu {{ vm_cpu }}"
+
+- name: Allocate RAM
+  shell: "qm set {{ vm_vmid }} --memory {{ vm_ram }}"
+
+- name: Set machine type
+  shell: "qm set {{ vm_vmid }} --machine {{ vm_machine }}"
+
+- name: Assign a network interface
+  shell: "qm set {{ vm_vmid }} --net0 {{ vm_net_driver }},bridge={{ vm_net_bridge }}"
+
+- name: Configure the network interface
+  shell: "qm set {{ vm_vmid }} --ipconfig0 {{ vm_net_ip }}"
+
+- name: Set the nameserver
+  shell: "qm set {{ vm_vmid }} --nameserver {{ vm_nameserver }}"
+  when: vm_nameserver is defined
+
+- name: Set the search domain
+  shell: "qm set {{ vm_vmid }} --searchdomain  {{ vm_searchdomain  }}"
+  when: vm_searchdomain is defined
+
+- name: Create the boot disk
+  shell: "qm importdisk {{ vm_vmid }} {{ cloud_image_dest }} {{ vm_storage }}"
+
+- name: Set the boot disk
+  shell: "qm set {{ vm_vmid }} --scsihw {{ vm_scsihw }} --scsi0 {{ vm_storage }}:vm-{{ vm_vmid }}-disk-0"
+
+- name: Resize the boot disk
+  shell: "qm resize {{ vm_vmid }} scsi0 {{ vm_disksize }}"
+
+- name: Create the cloudinit disk
+  shell: "qm set {{ vm_vmid }} --ide2 {{ vm_storage }}:cloudinit"
+  
+- name: Set bios type to UEFI
+  shell: "qm set {{ vm_vmid }} --bios {{ vm_bios }} --efidisk0 {{ vm_storage }}:0"
+  when: vm_bios == "ovmf"
+
+- name: Set the boot order
+  shell: "qm set {{ vm_vmid }} --boot c --bootdisk scsi0"
+
+- name: Create a serial terminal
+  shell: "qm set {{ vm_vmid }} --serial0 socket --vga serial0"
+
+- name: Set the cloudinit user
+  shell: "qm set {{ vm_vmid }} --ciuser {{ vm_cloudinit_user }}"
+  when: vm_cloudinit_user is defined
+  
+- name: Set the cloudinit password
+  shell: "qm set {{ vm_vmid }} --cipassword {{ vm_cloudinit_password }}"
+  when: vm_cloudinit_password is defined
+
+- name: Set the cloudinit ssh keys
+  when: vm_cloudinit_ssh_keys is defined
+  block:
+    - name: Create ssh keys file
+      lineinfile:
+        path: "/tmp/{{ vm_vmid }}-ssh-keys"
+        line: "{{ item }}"
+        create: true
+      loop: "{{ vm_cloudinit_ssh_keys }}"
+
+    - name: Set the VM ssh keys
+      shell: "qm set {{ vm_vmid }} --sshkeys /tmp/{{ vm_vmid }}-ssh-keys"
+
+    - name: Remove the ssh keys file
+      file:
+        path: "/tmp/{{ vm_vmid }}-ssh-keys"
+        state: absent
+
+- name: Make sure qemu-guest-agent gets installed on the VM
+  shell: "qm set {{ vm_vmid }} --cicustom 'vendor={{ proxmox_snippets_device }}:snippets/qemu-ga.yml'"
+
+- name: Enable qemu guest agent
+  shell: "qm set {{ vm_vmid }} --agent 1"
+
+- name: Convert the VM to a template
+  shell: "qm template {{ vm_vmid }}"

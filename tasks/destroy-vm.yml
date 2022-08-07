@@ -1,0 +1,3 @@
+---
+- name: "[ERROR] Something went wrong. Deleting the VM..."
+  shell: "qm destroy {{ vm_vmid }}"
