@@ -15,7 +15,7 @@
   shell: "qm set {{ vm_vmid }} --net0 {{ vm_net_driver }},bridge={{ vm_net_bridge }}"
 
 - name: Configure the network interface
-  shell: "qm set {{ vm_vmid }} --ipconfig0 ip={{ vm_net_ip }}"
+  shell: "qm set {{ vm_vmid }} --ipconfig0 {{ vm_net_ip }}"
 
 - name: Set the nameserver
   shell: "qm set {{ vm_vmid }} --nameserver {{ vm_nameserver }}"

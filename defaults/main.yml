@@ -11,8 +11,8 @@ vm_ram: 1024
 
 vm_net_driver: virtio
 vm_net_bridge: vmbr0
+vm_net_ip: ip=dhcp
 
-vm_net_ip: dhcp
 vm_scsihw: virtio-scsi-pci
 vm_disksize: 4G
 vm_bios: seabios
