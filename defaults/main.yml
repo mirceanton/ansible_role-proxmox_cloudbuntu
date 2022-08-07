@@ -16,3 +16,6 @@ vm_net_ip: ip=dhcp
 vm_scsihw: virtio-scsi-pci
 vm_disksize: 4G
 vm_bios: seabios
+
+proxmox_snippets_path: /var/lib/vz/snippets/
+proxmox_snippets_device: local

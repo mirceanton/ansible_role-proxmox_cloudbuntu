@@ -1,6 +1,8 @@
 ---
 - import_tasks: download-image.yml
 
+- import_tasks: import-snippets.yml
+
 - import_tasks: create-vm.yml
 
 - block:
