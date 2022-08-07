@@ -76,5 +76,8 @@
 - name: Make sure qemu-guest-agent gets installed on the VM
   shell: "qm set {{ vm_vmid }} --cicustom 'vendor={{ proxmox_snippets_device }}:snippets/qemu-ga.yml'"
 
+- name: Enable qemu guest agent
+  shell: "qm set {{ vm_vmid }} --agent 1"
+
 - name: Convert the VM to a template
   shell: "qm template {{ vm_vmid }}"
