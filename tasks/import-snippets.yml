@@ -1,4 +1,10 @@
 ---
+- name: Create snippets directory
+  file:
+    path: "{{ proxmox_snippets_path }}"
+    state: directory
+    recurse: true
+
 - name: Import custom snippets
   copy:
     src: files/snippets/qemu-ga.yml
