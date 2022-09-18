@@ -1,5 +1,5 @@
 galaxy_info:
-  role_name: proxmox_dark_theme
+  role_name: proxmox_cloudbuntu
 
   author: Mircea-Pavel ANTON
   description: An Ansible role that configures a Cloud VM template on a Proxmox host.
