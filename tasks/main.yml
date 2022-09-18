@@ -5,7 +5,8 @@
 
 - import_tasks: create-vm.yml
 
-- block:
+- name: Configure VM
+  block:
     - import_tasks: configure-vm.yml
   rescue:
     - import_tasks: destroy-vm.yml

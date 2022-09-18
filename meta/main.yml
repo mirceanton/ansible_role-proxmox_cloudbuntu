@@ -1,23 +1,25 @@
 galaxy_info:
-  role_name: proxmox-cloud-vm-template
+  role_name: proxmox_dark_theme
 
   author: Mircea-Pavel ANTON
   description: An Ansible role that configures a Cloud VM template on a Proxmox host.
   company: mirceanton
 
+  standalone: true
+
   issue_tracker_url: https://github.com/Amir-Homelab/ansible-role_proxmox-cloud-vm-template/issues
   license: license (MIT)
 
-  min_ansible_version: 2.1
+  min_ansible_version: "2.1"
 
   platforms:
     - name: Proxmox VE
       versions:
         - 7.2-7
 
-  galaxy_tags: 
-    - Proxmox
-    - Cloud Image
-    - VM Template
+  galaxy_tags:
+    - proxmox
+    - ubuntu
+    - cloudimage
 
 dependencies: []

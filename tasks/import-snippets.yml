@@ -1,11 +1,13 @@
 ---
 - name: Create snippets directory
-  file:
+  ansible.builtin.file:
     path: "{{ proxmox_snippets_path }}"
     state: directory
     recurse: true
+    mode: u=rwx,g=rx,o=r
 
 - name: Import custom snippets
-  copy:
+  ansible.builtin.copy:
     src: files/snippets/qemu-ga.yml
     dest: "{{ proxmox_snippets_path }}/qemu-ga.yml"
+    mode: u=rw,g=r,o=
