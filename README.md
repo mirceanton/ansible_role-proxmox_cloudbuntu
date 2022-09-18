@@ -69,7 +69,7 @@ Example Playbook
   remote_user: root
 
   roles:
-    - role: proxmox-cloud-vm-template
+    - role: mirceanton.proxmox_cloudbuntu
       vars:
         vm_vmid: 9000
         vm_name: ubuntu-22.04-cloud
