@@ -1,7 +1,7 @@
 galaxy_info:
-  role_name: proxmox_cloudbuntu
-
   author: Mircea-Pavel ANTON
+  namespace: mirceanton
+  role_name: proxmox_cloudbuntu
   description: An Ansible role that configures a Cloud VM template on a Proxmox host.
   company: mirceanton
 
@@ -15,7 +15,7 @@ galaxy_info:
   platforms:
     - name: Proxmox VE
       versions:
-        - 7
+        - 7.2
 
   galaxy_tags:
     - proxmox
