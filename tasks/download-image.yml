@@ -1,6 +1,6 @@
 ---
 - name: Download image file
   ansible.builtin.get_url:
-    url: "{{ cloud_image_url }}"
-    dest: "{{ cloud_image_dest }}"
+    url: "{{ proxmox_cloudbuntu_image_link }}"
+    dest: "{{ proxmox_cloudbuntu_image_dest }}"
     mode: u=rw,g=r,o=

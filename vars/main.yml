@@ -1,0 +1,12 @@
+---
+# The number of cpu cores to assign to the vm
+proxmox_cloudbuntu_cpu_cores: 1
+
+# The amount of RAM in mb to assign to the vm
+proxmox_cloudbuntu_ram: 1024
+
+# The bridge network on which the network device attaches
+proxmox_cloudbuntu_net_bridge: vmbr0
+
+# The cloudinit configuration for the network device
+proxmox_cloudbuntu_ci_ipconfig: ip=dhcp
