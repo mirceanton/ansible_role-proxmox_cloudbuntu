@@ -1,5 +1,0 @@
----
-skip_list:
-  - no-changed-when
-  - no-handler
-  - experimental
