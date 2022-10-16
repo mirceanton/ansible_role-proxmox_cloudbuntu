@@ -1,7 +1,7 @@
-Proxmox: Cloud VM Template
-==========================
+Proxmox: Cloudbuntu
+===================
 
-This role automatically downloads the cloud image file and configures a VM template for you to use on your Proxmox system, paving your way into the world of IaC.
+An Ansible role that configures an Ubuntu VM template based on the cloud image with support for cloudinit on a Proxmox VE host.
 
 Requirements
 ------------
